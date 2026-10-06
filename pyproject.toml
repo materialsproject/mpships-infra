@@ -1,0 +1,103 @@
+[project]
+name = "mpships_infra_dev"
+dynamic = ["version"]
+description = "MPShips infra dev"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Min-Hsueh Chiu", email = "minhsuehchiu@lbl.gov" }]
+
+dependencies = [
+  "dash>=2.11.0",
+  "flask-caching",
+  "frozendict",
+  "mp-api",
+  "pydantic-settings",
+  "pymatgen",
+  "flask",
+  "dash_mp_components",
+  "crystal_toolkit",
+  "pydash",
+  "mpcontribs-client"
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "selenium", "pre-commit"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mpships_infra = ["assets/**/*"]
+
+[tool.setuptools_scm]
+local_scheme = "no-local-version"
+
+[build-system]
+requires = ["setuptools>=45,<69", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+no_implicit_optional = false
+
+[tool.ruff]
+target-version = "py38"
+select = [
+  "B",   # flake8-bugbear
+  "D",   # pydocstyle
+  "E",   # pycodestyle
+  "F",   # pyflakes
+  "I",   # isort
+  "PIE", # flake8-pie
+  "PT",  # flake8-pytest-style
+  "PLE", # pylint error
+  "PLW", # pylint warning
+  "PYI", # flakes8-pyi
+  "Q",   # flake8-quotes
+  "SIM", # flake8-simplify
+  "TID", # tidy imports
+  "UP",  # pyupgrade
+  "W",   # pycodestyle
+  "YTT", # flake8-2020
+]
+ignore = [
+  "B019",    # Use of functools.lru_cache or functools.cache on methods can lead to memory leaks
+  "B028",    # No explicit stacklevel keyword argument found
+  "B904",    # Within an except clause, raise exceptions with raise ... from err
+  "D100",    # Missing docstring in public module
+  "D101",    # Missing docstring in public class
+  "D102",    # Missing docstring in public method
+  "D103",    # Missing docstring in public function
+  "D104",    # Missing docstring in public package
+  "D105",    # Missing docstring in magic method
+  "D106",    # Missing docstring in public nested class
+  "D107",    # Missing docstring in `__init__`
+  "D205",    # 1 blank line required between summary line and description
+  "E501",    # Line too long
+  "PLW2901", # Outer for loop variable overwritten by inner assignment target
+  "SIM105",  # Use contextlib.suppress(FileNotFoundError) instead of try-except-pass
+  "SIM115",  # Use context handler for opening files
+  "E731",    # Do not assign a `lambda` expression, use a `def`
+]
+pydocstyle.convention = "google"
+
+[tool.ruff.per-file-ignores]
+"*/__init__.py" = ["F401"] # F401: imported but unused
+"mp_web/main.py" = ["F401"] # imported but unused
+"dev_scripts/generate_property_plot.py" = [
+  "E402",
+] # Module level import not at top of file
+# Missing argument description in the docstring, First line should end with a period, question mark, or exclamation point
+"mp_web/apps/phasediagram/pdplotter_vendored.py" = ["D417", "D415"]
+# Comparison to `True` should be `cond is True` or `if cond:`
+"mp_web/apps/interface_reactions/interface_reactions.py" = ["E712"]
+"mp_web/apps/contribs/contribs.py" = ["B018"]
+"mp_web/apps/materials/micro_contribs.py" = [
+  "F401",
+] # ignore imported but unused error, due to cellRenderer js functionality

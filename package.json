@@ -1,0 +1,41 @@
+{
+  "name": "mpships-infra",
+  "version": "0.0.2",
+  "description": "MPShips infra",
+  "main": "webpack.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "bulma-tooltip": "^3.0.2",
+    "fast-json-stable-stringify": "^2.1.0",
+    "sass": "^1.93.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.9.0",
+    "bulma": "^0.9.4",
+    "css-loader": "^7.1.2",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.9.4",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "build:clean": "webpack --mode production && npm run copy:all && npm run clean:dist",
+    "build": "webpack --mode production",
+    "copy:css_assets": "npm run clean:css_assets && cp ./dist/main*.css ./src/mpships_infra/assets/",
+    "copy:font_assets": "npm run clean:font_assets && cp -R ./dist/fonts ./src/mpships_infra/assets/fonts",
+    "copy:all": "npm run copy:css_assets && npm run copy:font_assets",
+    "clean:dist": "test -d ./dist && rm -rf ./dist; exit 0",
+    "clean:css_assets": "test -f ./src/mpships_infra/assets/main.*.css && rm ./src/mpships_infra/assets/main.*.css; exit 0",
+    "clean:font_assets": "test -d ./src/mpships_infra/assets/fonts && rm -rf ./src/mpships_infra/assets/fonts; exit 0",
+    "clean:assets": "npm run clean:css_assets && npm run clean:font_assets",
+    "clean:all": "npm run clean:assets && npm run clean:dist"
+  },
+  "repository": "https://github.com/minhsueh/mpships_infra.git",
+  "author": "",
+  "license": "ISC"
+}

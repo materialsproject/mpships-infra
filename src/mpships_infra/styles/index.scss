@@ -1,0 +1,16 @@
+@charset "utf-8";
+/*
+    Do not expect any miracles from any bundler. No code splitting will happen because we technically
+    have only ONE entry point when we bundle the dash app (e.g = the dash app) There is no way to split CSS
+    in multiple chunk, because there is no way for webpack to know when a particular CSS modules is needed,
+    which makes sense by looking at the index.js file ( there is only on entry point, and it loads everything )
+*/
+
+// initial bulma variables that can be overridden by _variables.scss
+@import "~bulma/sass/utilities/initial-variables";
+// framework and custom fonts
+@import "~bulma/bulma";
+// bulma-tooltip extension
+@import '~bulma-tooltip';
+// general layout
+@import './app.scss';
