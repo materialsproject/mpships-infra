@@ -1,7 +1,7 @@
 [project]
-name = "mpships_infra_dev"
+name = "mpships_infra"
 dynamic = ["version"]
-description = "MPShips infra dev"
+description = "MPShips infra"
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "Min-Hsueh Chiu", email = "minhsuehchiu@lbl.gov" }]
@@ -89,15 +89,4 @@ pydocstyle.convention = "google"
 
 [tool.ruff.per-file-ignores]
 "*/__init__.py" = ["F401"] # F401: imported but unused
-"mp_web/main.py" = ["F401"] # imported but unused
-"dev_scripts/generate_property_plot.py" = [
-  "E402",
-] # Module level import not at top of file
-# Missing argument description in the docstring, First line should end with a period, question mark, or exclamation point
-"mp_web/apps/phasediagram/pdplotter_vendored.py" = ["D417", "D415"]
-# Comparison to `True` should be `cond is True` or `if cond:`
-"mp_web/apps/interface_reactions/interface_reactions.py" = ["E712"]
-"mp_web/apps/contribs/contribs.py" = ["B018"]
-"mp_web/apps/materials/micro_contribs.py" = [
-  "F401",
-] # ignore imported but unused error, due to cellRenderer js functionality
+
