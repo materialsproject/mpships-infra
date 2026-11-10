@@ -125,7 +125,7 @@ def create_app(
         REDIS_URL = f"redis://{SETTINGS.REDIS_ADDRESS}"
         add_rq_caching_config(app, REDIS_URL, SETTINGS.QUEUE_NAME)
         # cache = get_flask_caching(app, SETTINGS, f"mp_ui_{mp_ui_version}")
-        cache = Cache(app.server, config={"CACHE_TYPE": "NullCache"})
+        cache = Cache()
         configure_flask_caching(cache, app, SETTINGS, "mpships")
     else:
         cache = Cache(app.server, config={"CACHE_TYPE": "NullCache"})

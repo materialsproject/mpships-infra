@@ -225,8 +225,6 @@ class MPShipsApp(MPComponent, ABC):
         elif self.category:
             breadcrumb_links.append(mpc.Link("Apps", href="/apps"))
 
-        print(self.url)
-        print("haaa?")
         parts = self.url.split("/") if self.url else []
         # traverse the app tree to get an appropriate breadcrumb
         for idx, _part in enumerate(parts):
