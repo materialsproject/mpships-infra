@@ -265,13 +265,13 @@ class MPShipsApp(MPComponent, ABC):
             )
             from mp_ui.metadata.constants import (
                 _MAIN_CITATIONS,
-                APP_CITATION_DICT,
+                _APP_CITATIONS,
                 APP_METADATA,
                 MP_APPS_BY_CATEGORY,
             )
 
             icon = get_icon(self.icon)
-            citations = get_citations(self.dois, APP_CITATION_DICT)
+            citations = get_citations(self.dois, _APP_CITATIONS)
             external_links = get_external_links(self.external_links)
             docs_link = get_docs_link(self.docs_url, self.name)
             credits = get_credits(self.credits)
