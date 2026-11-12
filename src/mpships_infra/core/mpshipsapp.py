@@ -297,15 +297,15 @@ class MPShipsApp(MPComponent, ABC):
                 self.id("documentation-drawer"),
             )
 
-            if not MP_UI_INSTALLED:
-                mp_app_content = get_mp_app_content(self.id("mp-app-content"), drawers)
-            else:
-                mp_app_content = get_mp_app_login_content(
-                    self.__class__.__name__,
-                    self.id("mp-app-content"),
-                    "mpships",
-                    drawers,
-                )
+        if not MP_UI_INSTALLED:
+            mp_app_content = get_mp_app_content(self.id("mp-app-content"), drawers)
+        else:
+            mp_app_content = get_mp_app_login_content(
+                self.__class__.__name__,
+                self.id("mp-app-content"),
+                "mpships",
+                drawers,
+            )
 
             mp_apps_sidebar = get_apps_sidebar(
                 self.name, APP_METADATA, MP_APPS_BY_CATEGORY
