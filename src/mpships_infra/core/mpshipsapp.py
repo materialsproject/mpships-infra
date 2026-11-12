@@ -259,7 +259,6 @@ class MPShipsApp(MPComponent, ABC):
                 get_external_links,
                 get_icon,
                 get_mp_app_container,
-                get_mp_app_content,
                 get_mp_app_header,
                 get_mp_app_login_content,
             )
@@ -297,9 +296,6 @@ class MPShipsApp(MPComponent, ABC):
                 self.id("documentation-drawer"),
             )
 
-        if not MP_UI_INSTALLED:
-            mp_app_content = get_mp_app_content(self.id("mp-app-content"), drawers)
-        else:
             mp_app_content = get_mp_app_login_content(
                 self.__class__.__name__,
                 self.id("mp-app-content"),
