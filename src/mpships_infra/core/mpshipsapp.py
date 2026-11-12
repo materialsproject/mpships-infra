@@ -248,6 +248,7 @@ class MPShipsApp(MPComponent, ABC):
         mp_app_content = self.get_mpships_app_content()
         mp_app_container = self.get_mpships_app_container(mp_app_content)
         if MP_UI_INSTALLED:
+            print("yeeee")
             from mp_ui.layouts.mpapp import (
                 get_apps_sidebar,
                 get_breadcrumbs,
@@ -310,6 +311,7 @@ class MPShipsApp(MPComponent, ABC):
             mp_app_container = get_mp_app_container(
                 mp_apps_sidebar, mp_app_header, mp_app_content, self.id("app-container")
             )
+            print("okkkkkkkkk")
 
         return mp_app_container
 
