@@ -225,7 +225,7 @@ class MPShipsApp(MPComponent, ABC):
         elif self.category:
             breadcrumb_links.append(mpc.Link("Apps", href="/apps"))
 
-        parts = self.url.split("/")
+        parts = self.url.split("/") if self.url else []
         # traverse the app tree to get an appropriate breadcrumb
         for idx, _part in enumerate(parts):
             app_name = get(APP_TREE, parts[0 : idx + 1] + ["NAME"])
@@ -259,13 +259,12 @@ class MPShipsApp(MPComponent, ABC):
                 get_external_links,
                 get_icon,
                 get_mp_app_container,
-                get_mp_app_content,
                 get_mp_app_header,
                 get_mp_app_login_content,
             )
             from mp_ui.metadata.constants import (
-                _MAIN_CITATIONS,
                 _APP_CITATIONS,
+                _MAIN_CITATIONS,
                 APP_METADATA,
                 MP_APPS_BY_CATEGORY,
             )
@@ -297,15 +296,12 @@ class MPShipsApp(MPComponent, ABC):
                 self.id("documentation-drawer"),
             )
 
-            if not MP_UI_INSTALLED:
-                mp_app_content = get_mp_app_content(self.id("mp-app-content"), drawers)
-            else:
-                mp_app_content = get_mp_app_login_content(
-                    self.__class__.__name__,
-                    self.id("mp-app-content"),
-                    "mpships",
-                    drawers,
-                )
+            mp_app_content = get_mp_app_login_content(
+                self.__class__.__name__,
+                self.id("mp-app-content"),
+                "mpships",
+                drawers,
+            )
 
             mp_apps_sidebar = get_apps_sidebar(
                 self.name, APP_METADATA, MP_APPS_BY_CATEGORY
